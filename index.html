@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>'50s Diner'</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Flicker animation
+    document.addEventListener("DOMContentLoaded", () => {
+      const tvOverlay = document.querySelector("#tv-overlay");
+      setInterval(() => {
+        let jitterX = Math.random() * 4 - 2;
+        let jitterY = Math.random() * 4 - 2;
+        tvOverlay.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
+      }, 50);
+    });
+  </script>
+  <style>
+    /* Flicker animation */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: black;
+      overflow: hidden;
+    }
+
+    .tv-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background: repeating-linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.05) 0px,
+          rgba(0, 0, 0, 0.1) 2px,
+          rgba(0, 0, 0, 0.2) 4px);
+      animation: flicker 0.1s infinite alternate, roll 6s infinite linear;
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 0.9;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes roll {
+      0% {
+        background-position: 0 0;
+      }
+
+      100% {
+        background-position: 0 100px;
+      }
+    }
+
+    .static-noise {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('');
+      background-size: cover;
+      opacity: 0.05;
+      mix-blend-mode: difference;
+      animation: jitter 0.2s infinite;
+    }
+
+    @keyframes jitter {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      50% {
+        transform: translate(1px, -1px);
+      }
+
+      100% {
+        transform: translate(0, 1px);
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Quattrocento:wght@400;700&family=Sarina&display=swap" rel="stylesheet">
+  <script src="./tailwind.config.js"></script>
+</head>
+
+<body class="relative h-screen w-full font-serif">
+  <div class="max-h-screen w-screen overflow-y-scroll">
+    <div class="pt-[8%] pl-[12%] pr-[12%] pb-[22%] bg-[#fff6e6]" id="main-container">
+      <div id="site-container">
+        <!-- Header / Navigation -->
+        <header class="bg-red-600 text-white py-4 shadow-md">
+          <div class="container mx-auto px-4 flex items-center justify-between">
+            <h1 class="text-3xl font-bold font-sans tracking-widest">'50s Diner'</h1>
+            <nav>
+              <ul class="flex space-x-6 text-lg font-semibold">
+                <li><a href="#menu" class="hover:underline">Menu</a></li>
+                <li><a href="#specials" class="hover:underline">Specials</a></li>
+                <li><a href="#location" class="hover:underline">Location</a></li>
+                <li><a href="#jukebox" class="hover:underline">Jukebox</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
+
+        <!-- Hero / Banner -->
+        <section class="container mx-auto px-4 py-8 text-center flex flex-col items-center"
+          style="background-image: url('https://via.placeholder.com/1200x400/fff6e6/aa0000?text=Retro+Diner+Banner'); background-size: cover; background-position: center;">
+          <h2 class="font-sans text-4xl font-extrabold text-red-700 mb-2">
+            Cheeseburgers &bull; Milkshakes &bull; Apple Pie
+          </h2>
+          <p class="text-xl font-tagline text-gray-700 italic">
+            Step into our time machine and enjoy classic 1950s flavors!
+          </p>
+        </section>
+
+        <!-- Menu Section -->
+        <main class="container mx-auto px-4 mt-8" id="menu">
+          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+            Our Menu
+          </h2>
+          <ul class="space-y-4">
+            <li class="flex justify-between border-b pb-2">
+              <span>Cheeseburger</span>
+              <span>$5.99</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <span>Milkshake</span>
+              <span>$3.99</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <span>Apple Pie</span>
+              <span>$2.99</span>
+            </li>
+            <li class="flex justify-between border-b pb-2">
+              <span>Double Deluxe Burger</span>
+              <span>$6.99</span>
+            </li>
+          </ul>
+        </main>
+
+        <!-- Specials Section -->
+        <section class="container mx-auto px-4 mt-12" id="specials">
+          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+            Specials
+          </h2>
+          <div class="p-4 bg-yellow-200 rounded shadow-md text-center">
+            <p id="specialText" class="text-xl font-bold">
+              Click the button to see today's special!
+            </p>
+            <button id="specialBtn" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+              Reveal Special
+            </button>
+          </div>
+        </section>
+
+        <!-- Location Section -->
+        <section class="container mx-auto px-4 mt-12" id="location">
+          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+            Location
+          </h2>
+          <p class="text-lg mb-2">
+            399 Main Street, Hometown, USA
+          </p>
+          <p class="text-gray-600">
+            Right off Route 66, next to the old drive-in theater!
+          </p>
+        </section>
+
+        <!-- Jukebox Section -->
+        <section class="container mx-auto px-4 mt-12 mb-8" id="jukebox">
+          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+            Jukebox
+          </h2>
+          <p class="text-lg">
+            Relive the classics! Tap the button below to hear a random 1950s tune:
+          </p>
+          <button id="jukeboxBtn" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+            Play a Song
+          </button>
+          <p id="jukeboxSong" class="mt-4 text-xl font-bold"></p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-red-600 text-white pt-4 pb-8">
+          <div class="container mx-auto text-center">
+            <p>&copy; '50s Diner'. All rights reserved.</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <div id="retro-animation">
+    <div class="static-noise pointer-events-none"></div>
+    <div id="tv-overlay" class="tv-overlay"></div>
+  </div>
+  <div id="tv-screen" class="h-auto w-screen absolute top-0 left-0 pointer-events-none">
+    <img src="./images/screencontainer.png" class="w-full absolute inset-auto min-h-screen md:max-h-screen">
+  </div>
+  <script>
+    // "Special of the Day" functionality
+    document.getElementById("specialBtn").addEventListener("click", function () {
+      const specials = [
+        "Rock 'n' Roll Ribeye - 10% off!",
+        "Cherry Pie - Free slice with any burger!",
+        "Blue Suede Shoes Sundae - Limited time offer!",
+        "Drive-In Double Burger - Buy one, get one free!"
+      ];
+      const randomSpecial = specials[Math.floor(Math.random() * specials.length)];
+      document.getElementById("specialText").textContent = randomSpecial;
+    });
+
+    // "Jukebox" functionality (dummy text for a random '50s tune)
+    document.getElementById("jukeboxBtn").addEventListener("click", function () {
+      const songs = [
+        "Johnny B. Goode by Chuck Berry",
+        "Hound Dog by Elvis Presley",
+        "Tutti Frutti by Little Richard",
+        "Sh-Boom by The Chords",
+        "Mr. Sandman by The Chordettes"
+      ];
+      const randomSong = songs[Math.floor(Math.random() * songs.length)];
+      document.getElementById("jukeboxSong").textContent = `Now Playing: ${randomSong}`;
+    });
+  </script>
+
+  <script>
+    // "Special of the Day" functionality
+    document.getElementById("specialBtn").addEventListener("click", function () {
+      const specials = [
+        "Rock 'n' Roll Ribeye - 10% off!",
+        "Cherry Pie - Free slice with any burger!",
+        "Blue Suede Shoes Sundae - Limited time offer!",
+        "Drive-In Double Burger - Buy one, get one free!"
+      ];
+      const randomSpecial = specials[Math.floor(Math.random() * specials.length)];
+      document.getElementById("specialText").textContent = randomSpecial;
+    });
+
+    // "Jukebox" functionality (dummy text for a random '50s tune)
+    document.getElementById("jukeboxBtn").addEventListener("click", function () {
+      const songs = [
+        "Johnny B. Goode by Chuck Berry",
+        "Hound Dog by Elvis Presley",
+        "Tutti Frutti by Little Richard",
+        "Sh-Boom by The Chords",
+        "Mr. Sandman by The Chordettes"
+      ];
+      const randomSong = songs[Math.floor(Math.random() * songs.length)];
+      document.getElementById("jukeboxSong").textContent = `Now Playing: ${randomSong}`;
+    });
+  </script>
+</body>
+
+</html>
