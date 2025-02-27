@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>'50s Diner'</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>'50s Diner</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+   <script src="cache.tailwind.js"></script>
   <script>
     // Flicker animation
     document.addEventListener("DOMContentLoaded", () => {
@@ -104,7 +105,7 @@
         <!-- Header / Navigation -->
         <header class="bg-red-600 text-white py-4 shadow-md">
           <div class="container mx-auto px-4 flex items-center justify-between">
-            <h1 class="text-3xl font-bold font-sans tracking-widest">'50s Diner'</h1>
+            <h1 class="text-3xl font-bold font-sans tracking-widest"><a href="/">'50s Diner</a></h1>
             <nav>
               <ul class="flex space-x-6 text-lg font-semibold">
                 <li><a href="#menu" class="hover:underline">Menu</a></li>
@@ -197,7 +198,7 @@
         <!-- Footer -->
         <footer class="bg-red-600 text-white pt-4 pb-8">
           <div class="container mx-auto text-center">
-            <p>&copy; '50s Diner'. All rights reserved.</p>
+            <p>&copy; <a class="hover:underline" href="https://psychosage.io">ᴘꜱʏᴄʜᴏ𝕾𝖆𝖌𝖊</a> All rights reserved.</p>
           </div>
         </footer>
       </div>
@@ -236,7 +237,6 @@
       document.getElementById("jukeboxSong").textContent = `Now Playing: ${randomSong}`;
     });
   </script>
-
   <script>
     // "Special of the Day" functionality
     document.getElementById("specialBtn").addEventListener("click", function () {
