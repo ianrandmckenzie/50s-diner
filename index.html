@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>'50s Diner</title>
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-   <script src="cache.tailwind.js"></script>
+  <script src="cache.tailwind.js"></script>
   <script>
     // Flicker animation
     document.addEventListener("DOMContentLoaded", () => {
@@ -17,8 +17,44 @@
         tvOverlay.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
       }, 50);
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".jukebox-button").forEach(button => {
+        button.addEventListener("pointerdown", () => {
+          button.classList.add("pressed");
+        });
+
+        button.addEventListener("pointerup", () => {
+          button.classList.remove("pressed");
+        });
+
+        button.addEventListener("pointerleave", () => {
+          button.classList.remove("pressed");
+        });
+      });
+    });
   </script>
   <style>
+    /* Button Animation */
+    .jukebox-button {
+      background: radial-gradient(circle, #b00 40%, #a66 100%);
+      border-style: solid;
+      border-color: #333;
+      padding: 6px 18px;
+      border-top-width: 0px;
+      border-left-width: 0px;
+      border-bottom-width: 6px;
+      border-right-width: 4px;
+    }
+
+    .jukebox-button.pressed {
+      border-bottom-width: 3px;
+      border-right-width: 2px;
+      border-top-width: 3px;
+      border-left-width: 2px;
+      background: radial-gradient(circle, #f00 40%, #a66 100%);
+    }
+
     /* Flicker animation */
     * {
       margin: 0;
@@ -191,7 +227,7 @@
             <p id="specialText" class="text-xl font-bold">
               Click the button to see today's special!
             </p>
-            <button id="specialBtn" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+            <button id="specialBtn" class="jukebox-button mt-4 mx-auto translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
               Reveal Special
             </button>
           </div>
@@ -218,7 +254,7 @@
           <p class="text-lg">
             Relive the classics! Tap the button below to hear a random 1950s tune:
           </p>
-          <button id="jukeboxBtn" class="mt-4 bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded">
+          <button id="jukeboxBtn" class="jukebox-button mt-4 translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
             Play a Song
           </button>
           <p id="jukeboxSong" class="mt-4 text-xl font-bold"></p>
@@ -227,7 +263,8 @@
         <!-- Footer -->
         <footer class="bg-red-600 text-white pt-4 pb-8">
           <div class="container mx-auto text-center">
-            <p>&copy; <a class="hover:underline" href="https://psychosage.io">ᴘꜱʏᴄʜᴏ𝕾𝖆𝖌𝖊</a> All rights reserved.</p>
+            <p>&copy; <a class="hover:underline" href="https://www.psychosage.io">ᴘꜱʏᴄʜᴏ𝕾𝖆𝖌𝖊</a> All rights
+              reserved.</p>
           </div>
         </footer>
       </div>
