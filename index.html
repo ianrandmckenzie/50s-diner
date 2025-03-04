@@ -107,7 +107,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: url('');
+      background: url('./images/static.gif');
       background-size: cover;
       opacity: 0.05;
       mix-blend-mode: difference;
@@ -169,13 +169,11 @@
     <div class="absolute inset-0 bg-orange-500 rounded-[40px] -z-10"></div>
 
     <!-- Screen -->
-    <div class="absolute top-6 left-6 right-6 bottom-24 bg-black border-[12px] border-gray-300 rounded-[10%] shadow-inner overflow-hidden">
-      <!-- <div id="retro-animation" class="relative left-0 top-0" style="z-index: 0;">
-        <div class="static-noise pointer-events-none"></div>
-      </div> -->
+    <div class="absolute top-6 left-6 right-6 bottom-24 border-[12px] border-gray-300 rounded-[10%] shadow-inner overflow-hidden">
       <div class="max-h-screen w-screen overflow-y-scroll">
         <div class="relative pt-8 pl-4 pr-48 md:pr-56 max-w-7xl pb-[22%] bg-[#fff6e6]" id="main-container">
-          <div id="tv-overlay" class="tv-overlay absolute z-10 top-0 left-0 w-full h-full"></div>
+          <div id="tv-overlay" class="tv-overlay absolute z-10 top-0 -left-2 w-full h-full"></div>
+          <div class="static-noise pointer-events-none absolute z-10 top-0 -left-2 w-full h-full"></div>
           <div id="site-container" class="relative">
             <!-- Header / Navigation -->
             <header class="bg-red-600 text-white py-4 shadow-md">
