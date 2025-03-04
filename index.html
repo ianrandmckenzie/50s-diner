@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>'50s Diner</title>
   <!-- <script src="https://cdn.tailwindcss.com"></script> -->
   <script src="cache.tailwind.js"></script>
@@ -17,7 +17,7 @@
         tvOverlay.style.transform = `translate(${jitterX}px, ${jitterY}px)`;
       }, 50);
     });
-
+    // Button animation
     document.addEventListener("DOMContentLoaded", function () {
       document.querySelectorAll(".jukebox-button").forEach(button => {
         button.addEventListener("pointerdown", () => {
@@ -163,146 +163,153 @@
   <script src="./tailwind.config.js"></script>
 </head>
 
-<body class="relative h-screen w-full font-serif">
-  <div class="max-h-screen w-screen overflow-y-scroll">
-    <div class="pt-[8%] pl-[12%] pr-[12%] pb-[22%] bg-[#fff6e6]" id="main-container">
-      <div id="site-container">
-        <!-- Header / Navigation -->
-        <header class="bg-red-600 text-white py-4 shadow-md">
-          <div class="container mx-auto px-4 flex items-center justify-between">
-            <h1 class="text-3xl font-bold font-sans tracking-widest"><a href="/">'50s Diner</a></h1>
-            <nav>
-              <ul class="flex space-x-6 text-lg font-semibold">
-                <li><a href="#menu" class="hover:underline">Menu</a></li>
-                <li><a href="#specials" class="hover:underline">Specials</a></li>
-                <li><a href="#location" class="hover:underline">Location</a></li>
-                <li><a href="#jukebox" class="hover:underline">Jukebox</a></li>
+<body class="flex items-center justify-center min-h-screen bg-orange-100 font-serif">
+  <div class="relative -bottom-6 w-[90vw] max-w-7xl h-[90vh] bg-orange-300 border-[12px] border-orange-400 rounded-[40px] shadow-[10px_10px_0px_rgba(0,0,0,0.3)]">
+    <!-- 3D Effect -->
+    <div class="absolute inset-0 bg-orange-500 rounded-[40px] -z-10"></div>
+
+    <!-- Screen -->
+    <div class="absolute top-6 left-6 right-6 bottom-24 bg-black border-[12px] border-gray-300 rounded-[10%] shadow-inner overflow-hidden">
+      <!-- <div id="retro-animation" class="relative left-0 top-0" style="z-index: 0;">
+        <div class="static-noise pointer-events-none"></div>
+      </div> -->
+      <div class="max-h-screen w-screen overflow-y-scroll">
+        <div class="relative pt-8 pl-4 pr-48 md:pr-56 max-w-7xl pb-[22%] bg-[#fff6e6]" id="main-container">
+          <div id="tv-overlay" class="tv-overlay absolute z-10 top-0 left-0 w-full h-full"></div>
+          <div id="site-container" class="relative">
+            <!-- Header / Navigation -->
+            <header class="bg-red-600 text-white py-4 shadow-md">
+              <div class="container mx-auto px-4 flex items-center justify-between">
+                <h1 class="text-3xl font-bold font-sans tracking-widest"><a href="/">'50s Diner</a></h1>
+                <nav>
+                  <ul class="flex space-x-6 text-lg font-semibold">
+                    <li><a href="#menu" class="hover:underline">Menu</a></li>
+                    <li><a href="#specials" class="hover:underline">Specials</a></li>
+                    <li><a href="#location" class="hover:underline">Location</a></li>
+                    <li><a href="#jukebox" class="hover:underline">Jukebox</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </header>
+
+            <!-- Hero / Banner -->
+            <section class="container mx-auto px-4 py-8 text-center flex flex-col items-center"
+              style="background-image: url(''); background-size: cover; background-position: center;">
+              <h2 class="font-sans text-4xl font-extrabold text-red-700 mb-2">
+                Cheeseburgers &bull; Milkshakes &bull; Apple Pie
+              </h2>
+              <p class="text-xl font-tagline text-gray-700 italic">
+                Step into our time machine and enjoy classic 1950s flavors!
+              </p>
+            </section>
+
+            <!-- Menu Section -->
+            <main class="container mx-auto px-4 mt-8" id="menu">
+              <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+                Our Menu
+              </h2>
+              <ul class="space-y-4">
+                <li class="flex justify-between border-b pb-2">
+                  <span>Cheeseburger</span>
+                  <span>$5.99</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                  <span>Milkshake</span>
+                  <span>$3.99</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                  <span>Apple Pie</span>
+                  <span>$2.99</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                  <span>Double Deluxe Burger</span>
+                  <span>$6.99</span>
+                </li>
               </ul>
-            </nav>
+            </main>
+
+            <!-- Specials Section -->
+            <section class="container mx-auto px-4 mt-12" id="specials">
+              <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+                Specials
+              </h2>
+              <div class="p-4 bg-yellow-200 rounded shadow-md text-center">
+                <p id="specialText" class="text-xl font-bold">
+                  Click the button to see today's special!
+                </p>
+                <button id="specialBtn"
+                  class="jukebox-button mt-4 mx-auto translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
+                  Reveal Special
+                </button>
+              </div>
+            </section>
+
+            <!-- Location Section -->
+            <section class="container mx-auto px-4 mt-12" id="location">
+              <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+                Location
+              </h2>
+              <p class="text-lg mb-2">
+                399 Main Street, Hometown, USA
+              </p>
+              <p class="text-gray-600">
+                Right off Route 66, next to the old drive-in theater!
+              </p>
+            </section>
+
+            <!-- Jukebox Section -->
+            <section class="container mx-auto px-4 mt-12 mb-8" id="jukebox">
+              <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
+                Jukebox
+              </h2>
+              <p class="text-lg">
+                Relive the classics! Tap the button below to hear a random 1950s tune:
+              </p>
+              <button id="jukeboxBtn"
+                class="jukebox-button mt-4 translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
+                Play a Song
+              </button>
+              <p id="jukeboxSong" class="mt-4 text-xl font-bold"></p>
+            </section>
+
+            <!-- Footer -->
+            <footer class="bg-red-600 text-white pt-4 pb-8">
+              <div class="container mx-auto text-center">
+                <p>&copy; <a class="hover:underline" href="https://www.psychosage.io">ᴘꜱʏᴄʜᴏ𝕾𝖆𝖌𝖊</a> All rights
+                  reserved.</p>
+              </div>
+            </footer>
           </div>
-        </header>
-
-        <!-- Hero / Banner -->
-        <section class="container mx-auto px-4 py-8 text-center flex flex-col items-center"
-          style="background-image: url(''); background-size: cover; background-position: center;">
-          <h2 class="font-sans text-4xl font-extrabold text-red-700 mb-2">
-            Cheeseburgers &bull; Milkshakes &bull; Apple Pie
-          </h2>
-          <p class="text-xl font-tagline text-gray-700 italic">
-            Step into our time machine and enjoy classic 1950s flavors!
-          </p>
-        </section>
-
-        <!-- Menu Section -->
-        <main class="container mx-auto px-4 mt-8" id="menu">
-          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
-            Our Menu
-          </h2>
-          <ul class="space-y-4">
-            <li class="flex justify-between border-b pb-2">
-              <span>Cheeseburger</span>
-              <span>$5.99</span>
-            </li>
-            <li class="flex justify-between border-b pb-2">
-              <span>Milkshake</span>
-              <span>$3.99</span>
-            </li>
-            <li class="flex justify-between border-b pb-2">
-              <span>Apple Pie</span>
-              <span>$2.99</span>
-            </li>
-            <li class="flex justify-between border-b pb-2">
-              <span>Double Deluxe Burger</span>
-              <span>$6.99</span>
-            </li>
-          </ul>
-        </main>
-
-        <!-- Specials Section -->
-        <section class="container mx-auto px-4 mt-12" id="specials">
-          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
-            Specials
-          </h2>
-          <div class="p-4 bg-yellow-200 rounded shadow-md text-center">
-            <p id="specialText" class="text-xl font-bold">
-              Click the button to see today's special!
-            </p>
-            <button id="specialBtn" class="jukebox-button mt-4 mx-auto translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
-              Reveal Special
-            </button>
-          </div>
-        </section>
-
-        <!-- Location Section -->
-        <section class="container mx-auto px-4 mt-12" id="location">
-          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
-            Location
-          </h2>
-          <p class="text-lg mb-2">
-            399 Main Street, Hometown, USA
-          </p>
-          <p class="text-gray-600">
-            Right off Route 66, next to the old drive-in theater!
-          </p>
-        </section>
-
-        <!-- Jukebox Section -->
-        <section class="container mx-auto px-4 mt-12 mb-8" id="jukebox">
-          <h2 class="font-sans text-2xl font-bold text-red-700 border-b-2 border-red-400 pb-1 mb-4">
-            Jukebox
-          </h2>
-          <p class="text-lg">
-            Relive the classics! Tap the button below to hear a random 1950s tune:
-          </p>
-          <button id="jukeboxBtn" class="jukebox-button mt-4 translate-y-1 relative rounded-full flex items-center justify-center font-bold text-white text-lg uppercase shadow-lg transition-all">
-            Play a Song
-          </button>
-          <p id="jukeboxSong" class="mt-4 text-xl font-bold"></p>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-red-600 text-white pt-4 pb-8">
-          <div class="container mx-auto text-center">
-            <p>&copy; <a class="hover:underline" href="https://www.psychosage.io">ᴘꜱʏᴄʜᴏ𝕾𝖆𝖌𝖊</a> All rights
-              reserved.</p>
-          </div>
-        </footer>
+        </div>
       </div>
     </div>
-  </div>
-  <div id="retro-animation">
-    <div class="static-noise pointer-events-none"></div>
-    <div id="tv-overlay" class="tv-overlay"></div>
-  </div>
-  <div id="tv-screen" class="h-auto w-screen absolute top-0 left-0 pointer-events-none">
-    <img src="./images/screencontainer.png" class="w-full absolute inset-auto min-h-screen md:max-h-screen">
-  </div>
-  <script>
-    // "Special of the Day" functionality
-    document.getElementById("specialBtn").addEventListener("click", function () {
-      const specials = [
-        "Rock 'n' Roll Ribeye - 10% off!",
-        "Cherry Pie - Free slice with any burger!",
-        "Blue Suede Shoes Sundae - Limited time offer!",
-        "Drive-In Double Burger - Buy one, get one free!"
-      ];
-      const randomSpecial = specials[Math.floor(Math.random() * specials.length)];
-      document.getElementById("specialText").textContent = randomSpecial;
-    });
 
-    // "Jukebox" functionality (dummy text for a random '50s tune)
-    document.getElementById("jukeboxBtn").addEventListener("click", function () {
-      const songs = [
-        "Johnny B. Goode by Chuck Berry",
-        "Hound Dog by Elvis Presley",
-        "Tutti Frutti by Little Richard",
-        "Sh-Boom by The Chords",
-        "Mr. Sandman by The Chordettes"
-      ];
-      const randomSong = songs[Math.floor(Math.random() * songs.length)];
-      document.getElementById("jukeboxSong").textContent = `Now Playing: ${randomSong}`;
-    });
-  </script>
+    <!-- Bottom Panel -->
+    <div
+      class="absolute bottom-0 left-0 right-0 h-20 bg-orange-400 border-t-[6px] border-orange-500 rounded-b-[40px] flex items-center justify-between px-6 shadow-inner">
+      <!-- Speaker -->
+      <div class="flex space-x-1">
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+        <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+      </div>
+
+      <!-- Knobs -->
+      <div class="flex space-x-4">
+        <div class="w-10 h-10 bg-gray-500 border-2 border-gray-600 rounded-full shadow-md"></div>
+        <div class="w-10 h-10 bg-gray-500 border-2 border-gray-600 rounded-full shadow-md"></div>
+      </div>
+    </div>
+
+    <!-- Antennas -->
+    <div class="absolute -top-32 left-1/3 w-1 h-32 bg-gray-500 rotate-[-30deg] rounded origin-bottom"></div>
+    <div class="absolute -top-32 right-1/3 w-1 h-32 bg-gray-500 rotate-[30deg] rounded origin-bottom"></div>
+  </div>
   <script>
     // "Special of the Day" functionality
     document.getElementById("specialBtn").addEventListener("click", function () {
